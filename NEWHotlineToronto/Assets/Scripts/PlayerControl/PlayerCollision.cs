@@ -12,6 +12,8 @@ public class PlayerCollision : MonoBehaviour {
 	public Sprite playerPistolSprite, playerShotgunSprite, playerRifleSprite;
 	private string currentGun = "rifle";
 	private bool gunPickedUpConfirm = false;
+
+	public GameObject BulletSpawner;
 	public Camera camera;
 
 	void start() {
@@ -114,6 +116,9 @@ public class PlayerCollision : MonoBehaviour {
 					Destroy (c.gameObject);
 					currentGun = "pistol";
 					gunPickedUpConfirm = true;
+					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= false;
+					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= true;
+					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = false;
 				}
 			}
 		}
@@ -130,6 +135,9 @@ public class PlayerCollision : MonoBehaviour {
 					Destroy(c.gameObject);
 					currentGun = "rifle";
 					gunPickedUpConfirm = true;
+					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= false;
+					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= false;
+					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = true;
 				}
 			}
 		}
@@ -146,6 +154,10 @@ public class PlayerCollision : MonoBehaviour {
 					Destroy(c.gameObject);
 					currentGun = "shotgun";
 					gunPickedUpConfirm = true;
+					BulletSpawner.GetComponent<BulletSpawner>().ShotGunisActive= true;
+					BulletSpawner.GetComponent<BulletSpawner>().HandGunisActive= false;
+					BulletSpawner.GetComponent<BulletSpawner> ().AssaultRifleisActive = false;
+
 				}
 			}
 		}
